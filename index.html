@@ -12,36 +12,24 @@
     />
     <link rel="stylesheet" href="style.css" />
     <title>Финансы</title>
-    <script>
-      var c = 0;
-      function addition() {
-        var a = parseInt(document.getElementById("a").value);
-
-        c += a;
-      }
-      function sum() {
-        document.getElementById("da").innerHTML = c + " руб";
-      }
-    </script>
   </head>
   <body>
     <div class="container">
       <h1 class="text-center">Учёт расходов</h1>
-      <form action="/php/db_save.php" method="post">
+      <form action="save.php" method="post">
         <h3>Введите расходы</h3>
         <div class="input-group mb-3">
-          <input type="text" class="input" name="entry" id="a" />
+          <input type="text" class="input" name="input" />
           <span class="input-group-text span2">руб</span>
         </div>
         <input type="date" name="date" class="date" />
         <p></p>
-        <button class="btn btn-info" type="button" onclick="addition()">
-          Записать</button
-        ><br /><br />
+        <button class="btn btn-info" type="submit">Записать</button>
+        <p></p>
 
         <hr />
       </form>
-      <form action="/php/result.php" method="post">
+      <form action="output.php" method="post">
         <h3>Расходы за месяц</h3>
 
         <select name="month" class="cal">
@@ -60,16 +48,10 @@
         </select>
         <p></p>
         <p>
-          <input
-            type="button"
-            value="Вывести"
-            onclick="sum()"
-            class="btn btn-info"
-          />
+          <button class="btn btn-info" type="submit">Вывести</button>
         </p>
         Итого: <span id="da"></span>
-
-        <p></p>
+        <?php echo $sum?>
       </form>
     </div>
   </body>
