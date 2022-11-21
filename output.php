@@ -6,12 +6,8 @@ if (!R::testConnection()) {
     exit('Нет подключения!');
 }
 
-function search($value, $array)
-{
-    return (array_search($value, $array));
-}
 $month = ["Январь" => "1", "Февраль" => "2", "Март" => "3", "Апрель" => "4", "Май" => "5", "Июнь" => "6", "Июль" => "7", "Август" => "8", "Сентябрь" => "9", "Октябрь" => "10", "Ноябрь" => "11", "Декабрь" => "12"];
-$name_month = (search($_POST['month'], $month));
+$name_month = (array_search($_POST['month'], $month));
 
 $year = date('Y');
 $days = cal_days_in_month(CAL_GREGORIAN, $_POST['month'], $year);
@@ -23,5 +19,4 @@ $sum = 0;
 foreach ($expenses as $expens) {
     $sum += (int)$expens['money'];
 }
-
 require_once "index.html";
