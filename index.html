@@ -13,16 +13,29 @@
     <link rel="stylesheet" href="style.css" />
     <title>Финансы</title>
   </head>
-  <body>
+  <body style="background-color: #d8f6f3">
     <div class="container">
       <h1 class="text-center">Учёт расходов</h1>
       <form action="save.php" method="post">
-        <h3>Введите расходы</h3>
+        <h3>Запись расходов</h3>
         <div class="input-group mb-3">
           <input type="text" class="input" name="input" />
           <span class="input-group-text span2">руб</span>
         </div>
         <input type="date" name="date" class="date" />
+        <p></p>
+        <select name="category" class="cal" placeholder="Категория">
+          <option value="" disabled>Категория</option>
+          <option value="personal">Личные расходы</option>
+          <option value="house">Дом</option>
+          <option value="health">Здоровье</option>
+          <option value="clothes">Одежда</option>
+          <option value="food">Питание</option>
+          <option value="gifts">Подарки</option>
+          <option value="technic">Техника</option>
+          <option value="services">Услуги</option>
+          <option value="car">Автомобиль</option>
+        </select>
         <p></p>
         <button class="btn btn-info" type="submit">Записать</button>
         <p></p>
@@ -30,28 +43,65 @@
         <hr />
       </form>
       <form action="output.php" method="post">
-        <h3>Расходы за месяц</h3>
-
-        <select name="month" class="cal">
-          <option value="1">Январь</option>
-          <option value="2">Февраль</option>
-          <option value="3">Март</option>
-          <option value="4">Апрель</option>
-          <option value="5">Май</option>
-          <option value="6">Июнь</option>
-          <option value="7">Июль</option>
-          <option value="8">Август</option>
-          <option value="9">Сентябрь</option>
-          <option value="10">Октябрь</option>
-          <option value="11">Ноябрь</option>
-          <option value="12">Декабрь</option>
-        </select>
-        <p></p>
+        <h3>Просмотр расходов</h3>
         <p>
-          <button class="btn btn-info" type="submit">Вывести</button>
+          Выберите месяц <br />
+          <select name="month" class="cal" placeholder="Месяц">
+            <option value="1">Январь</option>
+            <option value="2">Февраль</option>
+            <option value="3">Март</option>
+            <option value="4">Апрель</option>
+            <option value="5">Май</option>
+            <option value="6">Июнь</option>
+            <option value="7">Июль</option>
+            <option value="8">Август</option>
+            <option value="9">Сентябрь</option>
+            <option value="10">Октябрь</option>
+            <option value="11">Ноябрь</option>
+            <option value="12">Декабрь</option>
+          </select>
         </p>
-        Итого: <span id="da"></span>
-        <?php echo $sum?>
+        <p>
+          Выберите категорию <br />
+          <select name="category" class="cal">
+            <option value="" disabled>Категория</option>
+            <option value="personal">Личные расходы</option>
+            <option value="house">Дом</option>
+            <option value="health">Здоровье</option>
+            <option value="clothes">Одежда</option>
+            <option value="food">Питание</option>
+            <option value="gifts">Подарки</option>
+            <option value="technic">Техника</option>
+            <option value="services">Услуги</option>
+            <option value="car">Автомобиль</option>
+          </select>
+        </p>
+        <p>
+          <button class="btn btn-info" type="submit">Вывести расходы</button>
+        </p>
+        <div class="contVivod">
+          <p>
+            Траты на категорию
+            <?php echo $category ?>:
+            <?php echo $sum1?>
+            руб
+          </p>
+          <p>
+            Траты за месяц
+            <?php echo $name_month ?>:
+            <?php echo $sum2?>
+            руб
+          </p>
+          <p>
+            Траты за месяц
+            <?php echo $name_month ?>
+            на
+            <?php echo $category ?>:
+            <?php echo $sum3?>
+            руб
+          </p>
+        </div>
+        <p></p>
       </form>
     </div>
   </body>

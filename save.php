@@ -1,20 +1,14 @@
 <?php
-require_once "index.html";
-include $_SERVER['DOCUMENT_ROOT'] . "/vendor/autoload.php";
-class_alias('\RedBeanPHP\R', '\R');
-R::setup('mysql:host=localhost;dbname=finance', 'root', 'root');
-if (!R::testConnection()) {
-    exit('Нет подключения!');
-}
+require_once "Expenses.php";
+Expenses::connect();
 
 $input = $_POST['input'];
 $date = $_POST['date'];
+$category = $_POST['category'];
 
-$table = R::dispense('one');
-$table->money = $input;
-$table->date = $date;
+$category = (array_search($_POST['category'], Expenses::category));
 
-R::store($table);
+Expenses::addRecord($input, $date, $category);
 header('Location: /');
 
 
