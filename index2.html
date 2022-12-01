@@ -44,27 +44,27 @@
     </nav>
     <br />
     <div class="container">
-      <h1>
-        Добро пожаловать! <br />Пожалуйста, войдите или зарегистрируйтесь.
-      </h1>
-      <div class="cont1">
-        <div class="cont2">
-          <form action="/vxUser.php" method="post">
-            <div class="cont3">
-              <div class="cont4">
-                <a
-                  href="index.html"
-                  class="on"
-                  style="background-color: #1ce7e7"
-                  >Вход</a
-                >
-                <a
-                  href="index2.html"
-                  class="off"
-                  style="background-color: rgb(224, 240, 238)"
-                  >Регистрация</a
-                >
-              </div>
+        <h1>
+          Добро пожаловать! <br />Пожалуйста, войдите или зарегистрируйтесь.
+        </h1>
+        <div class="cont1">
+          <div class="cont2">
+            <form action="/regUser.php" method="post">
+              <div class="cont3">
+                <div class="cont4">
+                  <a
+                    href="index.html"
+                    class="off"
+                    style="background-color: rgb(224, 240, 238)"
+                    >Вход</a
+                  >
+                  <a
+                    href="index2.html"
+                    class="on"
+                    style="background-color: #1ce7e7"
+                    >Регистрация</a
+                  >
+                </div>
               <label for="login">Логин</label>
               <input
                 type="text"
@@ -72,6 +72,14 @@
                 name="login"
                 id="login"
                 placeholder="Введите логин"
+              />
+              <label for="email">Почта</label>
+              <input
+                type="text"
+                class="vib"
+                name="email"
+                id="email"
+                placeholder="Введите email"
               />
               <label for="password">Пароль</label>
               <input
@@ -81,14 +89,14 @@
                 id="password"
                 placeholder="Введите пароль"
               />
-              <button type="submit" class="entry" class="conclusion">
-                Войти
+              <button type="submit" class="entry">
+                Зарегистрироваться
               </button>
             </div>
           </form>
-        </div>
+        </div>  
       </div>
     </div>
-    <div class="cont3"></div>
+    </div>
   </body>
 </html>

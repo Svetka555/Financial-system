@@ -2,12 +2,11 @@ hr {
   background-color: rgb(170, 198, 204);
   height: 3px;
 }
+
 .span2 {
   background-color: rgb(170, 198, 204);
 }
-h1 {
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-}
+
 .cal {
   background-color: rgb(255, 255, 255);
 }

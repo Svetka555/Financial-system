@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Расходы</title>
+  </head>
+  <body style="background-color: #d8f6f3">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand p-0" href="/">Главная</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="expenses.html"
+                >Расходы</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="income.html">Доходы</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <br />
+    <div class="container">
+      <form action="saveExp.php" method="post">
+        <h3>Запись расходов</h3>
+        <div class="input-group mb-3">
+          <input type="text" class="input" name="input" />
+          <span class="input-group-text span2">руб</span>
+        </div>
+        <input type="date" name="date" class="date" />
+        <p></p>
+        <select name="category" class="cal" placeholder="Категория">
+          <option value="" disabled>Категория</option>
+          <option value="personal">Личные расходы</option>
+          <option value="house">Дом</option>
+          <option value="health">Здоровье</option>
+          <option value="clothes">Одежда</option>
+          <option value="food">Питание</option>
+          <option value="gifts">Подарки</option>
+          <option value="technic">Техника</option>
+          <option value="services">Услуги</option>
+          <option value="car">Автомобиль</option>
+        </select>
+        <p></p>
+        <button class="btn btn-info" type="submit">Записать</button>
+        <p></p>
+
+        <hr />
+      </form>
+      <form action="outputExp.php" method="post">
+        <h3>Просмотр расходов</h3>
+        <p>
+          Выберите месяц <br />
+          <select name="month" class="cal" placeholder="Месяц">
+            <option value="1">Январь</option>
+            <option value="2">Февраль</option>
+            <option value="3">Март</option>
+            <option value="4">Апрель</option>
+            <option value="5">Май</option>
+            <option value="6">Июнь</option>
+            <option value="7">Июль</option>
+            <option value="8">Август</option>
+            <option value="9">Сентябрь</option>
+            <option value="10">Октябрь</option>
+            <option value="11">Ноябрь</option>
+            <option value="12">Декабрь</option>
+          </select>
+        </p>
+        <p>
+          Выберите категорию <br />
+          <select name="category" class="cal">
+            <option value="" disabled>Категория</option>
+            <option value="personal">Личные расходы</option>
+            <option value="house">Дом</option>
+            <option value="health">Здоровье</option>
+            <option value="clothes">Одежда</option>
+            <option value="food">Питание</option>
+            <option value="gifts">Подарки</option>
+            <option value="technic">Техника</option>
+            <option value="services">Услуги</option>
+            <option value="car">Автомобиль</option>
+          </select>
+        </p>
+        <p>
+          <button class="btn btn-info" type="submit">Вывести расходы</button>
+        </p>
+        <div class="contVivod">
+          <p>
+            Траты на категорию
+            <?php echo $categoryExpenses ?>:
+            <?php echo $sum1?>
+            руб
+          </p>
+          <p>
+            Траты за месяц
+            <?php echo $name_month ?>:
+            <?php echo $sum2?>
+            руб
+          </p>
+          <p>
+            Траты за месяц
+            <?php echo $name_month ?>
+            на категорию
+            <?php echo $categoryExpenses ?>:
+            <?php echo $sum3?>
+            руб
+          </p>
+        </div>
+        <p></p>
+      </form>
+    </div>
+  </body>
+</html>

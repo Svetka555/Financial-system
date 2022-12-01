@@ -1,5 +1,5 @@
 <?php
-class Expenses
+class Income
 {
     public const month = [
         "Январь" => "1",
@@ -16,15 +16,14 @@ class Expenses
         "Декабрь" => "12"
     ];
     public const category = [
-        "Личные расходы" => "personal",
-        "Дом" => "house",
-        "Здоровье" => "health",
-        "Одежда" => "clothes",
-        "Питание" => "food",
-        "Подарки" => "gifts",
-        "Техника" => "technic",
-        "Услуги" => "services",
-        "Автомобиль" => "car"
+        "Зарплата" => "salary",
+        "Премия" => "prize",
+        "Пенсия" => "pension",
+        "Пособие" => "stipend",
+        "Стипендия" => "scholarship",
+        "Наследство" => "heritage",
+        "Дивиденды" => "dividends",
+        "Иное" => "other",
     ];
     static function connect()
     {
@@ -37,7 +36,7 @@ class Expenses
         $id = R::getAll("SELECT id FROM `users` WHERE login='{$_COOKIE['login']}'");
         $category = (array_search($_POST['category'], self::category));
 
-        $expenses1 = R::getAll("SELECT * FROM `expenses` WHERE category='{$category}' AND idusers = '{$id[0]['id']}'");
+        $expenses1 = R::getAll("SELECT * FROM `income` WHERE category='{$category}' AND idusers = '{$id[0]['id']}'");
         return $expenses1;
     }
     static function sumCategory($expenses1)
@@ -56,7 +55,7 @@ class Expenses
         $date1 = date("Y-{$_POST['month']}-01");
         $date2 = date("Y-{$_POST['month']}-{$days}");
 
-        $expenses2 = R::getAll("SELECT * FROM `expenses` WHERE date BETWEEN '{$date1}' AND '{$date2}' AND idusers = '{$id[0]['id']}'");
+        $expenses2 = R::getAll("SELECT * FROM `income` WHERE date BETWEEN '{$date1}' AND '{$date2}' AND idusers = '{$id[0]['id']}'");
         return $expenses2;
     }
     static function sumDate($expenses2)
@@ -77,7 +76,7 @@ class Expenses
         $date1 = date("Y-{$_POST['month']}-01");
         $date2 = date("Y-{$_POST['month']}-{$days}");
 
-        $expenses3 = R::getAll("SELECT * FROM `expenses` WHERE date BETWEEN '{$date1}' AND '{$date2}' AND category='{$category}' AND idusers = '{$id[0]['id']}'");
+        $expenses3 = R::getAll("SELECT * FROM `income` WHERE date BETWEEN '{$date1}' AND '{$date2}' AND category='{$category}' AND idusers = '{$id[0]['id']}'");
         return $expenses3;
     }
     static function sumCategoryDate($expenses3)
@@ -88,10 +87,10 @@ class Expenses
         }
         return $sum;
     }
-    static function addRecord($input, $date, $category, $id)
+    static function addRecord($input, $date, $category)
     {
         $id = R::getAll("SELECT id FROM `users` WHERE login='{$_COOKIE['login']}'");
-        $table = R::dispense('expenses');
+        $table = R::dispense('income');
         $table->money = $input;
         $table->date = $date;
         $table->category = $category;
