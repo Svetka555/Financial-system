@@ -88,6 +88,21 @@ class Expenses
         }
         return $sum;
     }
+    static function getRecordsAll()
+    {
+        $id = R::getAll("SELECT id FROM `users` WHERE login='{$_COOKIE['login']}'");
+
+        $sum = R::getAll("SELECT * FROM `expenses` WHERE idusers = '{$id[0]['id']}'");
+        return $sum;
+    }
+    static function sumAll($sum)
+    {
+        $sumAll = 0;
+        foreach ($sum as $su) {
+            $sumAll += (int)$su['money'];
+        }
+        return $sumAll;
+    }
     static function addRecord($input, $date, $category, $id)
     {
         $id = R::getAll("SELECT id FROM `users` WHERE login='{$_COOKIE['login']}'");

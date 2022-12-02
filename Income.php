@@ -25,25 +25,20 @@ class Income
         "Дивиденды" => "dividends",
         "Иное" => "other",
     ];
-    static function connect()
-    {
-        include $_SERVER['DOCUMENT_ROOT'] . "/vendor/autoload.php";
-        class_alias('\RedBeanPHP\R', '\R');
-        R::setup('mysql:host=127.0.0.1;dbname=finance', 'root', 'root');
-    }
+
     static function getRecordsCategory()
     {
         $id = R::getAll("SELECT id FROM `users` WHERE login='{$_COOKIE['login']}'");
         $category = (array_search($_POST['category'], self::category));
 
-        $expenses1 = R::getAll("SELECT * FROM `income` WHERE category='{$category}' AND idusers = '{$id[0]['id']}'");
-        return $expenses1;
+        $income1 = R::getAll("SELECT * FROM `income` WHERE category='{$category}' AND idusers = '{$id[0]['id']}'");
+        return $income1;
     }
-    static function sumCategory($expenses1)
+    static function sumCategory($income1)
     {
         $sum = 0;
-        foreach ($expenses1 as $expens) {
-            $sum += (int)$expens['money'];
+        foreach ($income1 as $inc) {
+            $sum += (int)$inc['money'];
         }
         return $sum;
     }
@@ -55,14 +50,14 @@ class Income
         $date1 = date("Y-{$_POST['month']}-01");
         $date2 = date("Y-{$_POST['month']}-{$days}");
 
-        $expenses2 = R::getAll("SELECT * FROM `income` WHERE date BETWEEN '{$date1}' AND '{$date2}' AND idusers = '{$id[0]['id']}'");
-        return $expenses2;
+        $income2 = R::getAll("SELECT * FROM `income` WHERE date BETWEEN '{$date1}' AND '{$date2}' AND idusers = '{$id[0]['id']}'");
+        return $income2;
     }
-    static function sumDate($expenses2)
+    static function sumDate($income2)
     {
         $sum = 0;
-        foreach ($expenses2 as $expens) {
-            $sum += (int)$expens['money'];
+        foreach ($income2 as $inc) {
+            $sum += (int)$inc['money'];
         }
         return $sum;
     }
@@ -76,16 +71,31 @@ class Income
         $date1 = date("Y-{$_POST['month']}-01");
         $date2 = date("Y-{$_POST['month']}-{$days}");
 
-        $expenses3 = R::getAll("SELECT * FROM `income` WHERE date BETWEEN '{$date1}' AND '{$date2}' AND category='{$category}' AND idusers = '{$id[0]['id']}'");
-        return $expenses3;
+        $income3 = R::getAll("SELECT * FROM `income` WHERE date BETWEEN '{$date1}' AND '{$date2}' AND category='{$category}' AND idusers = '{$id[0]['id']}'");
+        return $income3;
     }
-    static function sumCategoryDate($expenses3)
+    static function sumCategoryDate($income3)
     {
         $sum = 0;
-        foreach ($expenses3 as $expens) {
-            $sum += (int)$expens['money'];
+        foreach ($income3 as $inc) {
+            $sum += (int)$inc['money'];
         }
         return $sum;
+    }
+    static function getRecordsAll()
+    {
+        $id = R::getAll("SELECT id FROM `users` WHERE login='{$_COOKIE['login']}'");
+
+        $sum = R::getAll("SELECT * FROM `income` WHERE idusers = '{$id[0]['id']}'");
+        return $sum;
+    }
+    static function sumAll($sum)
+    {
+        $sumAll = 0;
+        foreach ($sum as $su) {
+            $sumAll += (int)$su['money'];
+        }
+        return $sumAll;
     }
     static function addRecord($input, $date, $category)
     {

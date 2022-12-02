@@ -1,6 +1,7 @@
 <?php
 require_once "Income.php";
-Income::connect();
+require_once "Expenses.php";
+Expenses::connect();
 $categoryIncome = (array_search($_POST['category'], Income::category));
 $name_month = (array_search($_POST['month'], Income::month));
 $income1 = Income::getRecordsCategory();

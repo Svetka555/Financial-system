@@ -1,6 +1,7 @@
 <?php
 require_once "Income.php";
-Income::connect();
+require_once "Expenses.php";
+Expenses::connect();
 
 $input = $_POST['input'];
 $date = $_POST['date'];
